@@ -1,11 +1,15 @@
-from selenium import webdriver #run an automated web browser
-from selenium.webdriver.chrome.options import Options #chrome options for selenium
+#from selenium import webdriver #run an automated web browser
+#from selenium.webdriver.chrome.options import Options #chrome options for selenium
 #browser options
-chrome_options = Options()
-chrome_options.add_argument('--headless')
+#chrome_options = Options()
+#chrome_options.add_argument('--headless')
 
 #download files
 from requests import get
+
+#manipulate html
+from bs4 import BeautifulSoup as bs
+
 #input arguments
 import argparse
 
@@ -29,17 +33,20 @@ def save_img(url, chapter_number, page_number):
     return file_name
 
 def download_chapter(chapter_number):
-    browser = webdriver.Chrome(options = chrome_options)
+    #browser = webdriver.Chrome(options = chrome_options)
     print('loading chapter {} page'.format(chapter_number))
-    browser.get('https://ww7.readsnk.com/chapter/shingeki-no-kyojin-chapter-{}/'.format(chapter_number))
+    res = get('https://ww7.readsnk.com/chapter/shingeki-no-kyojin-chapter-{}/'.format(chapter_number))
+    soup = bs(res.content, 'html.parser')
     print('page loaded')
-    images = browser.find_elements_by_tag_name('img')
+    #images = browser.find_elements_by_tag_name('img')
+    images = soup.findAll('img')
     print('found {} images'.format(len(images)))
-    urls = list(map(lambda x: x.get_attribute('src'), images))
+    #urls = list(map(lambda x: x.get_attribute('src'), images))
+    urls = list(map(lambda x: x['src'], images))
     image_urls = list(map(lambda x: generate_img_url(x), urls))
     image_urls_final = [u for u in image_urls if u[u.rfind('.'):] != '.gif']
     print('found {} image urls'.format(len(image_urls_final)))
-    browser.close()
+    #browser.close()
     files = []
     for i, url in enumerate(image_urls_final):
         files.append(save_img(url, chapter_number, i))
