@@ -1,4 +1,5 @@
 # attack-on-titan-manga-downloader
+###### Mahmoud Khayrallah
 a script to download attack on titan manga
 
 ### how to start
