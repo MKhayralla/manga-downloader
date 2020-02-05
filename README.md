@@ -14,15 +14,19 @@ use ` pip install -r requirements.txt ` in the terminal
 
 ### simple usage
 
-` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [{attack,nanatsu}] `
+` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [{attack,nanatsu}] `
 
 positional arguments:
 
-  {attack,nanatsu}      manga name, defaulted to "attack"
+  {attack,nanatsu}      
+
+                        manga name, defaulted to "attack"
 
 optional arguments:
 
-  -h, --help            show help message and exit
+  -h, --help            
+
+                        show help message and exit
 
   -c CHAPTERS [CHAPTERS ...], --chapters CHAPTERS [CHAPTERS ...]
 
