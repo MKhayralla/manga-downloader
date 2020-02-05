@@ -18,13 +18,13 @@ use ` pip install -r requirements.txt ` in the terminal
 
 positional arguments:
 
-  {attack,nanatsu}      
+  {attack,nanatsu}
 
                         manga name, defaulted to "attack"
 
 optional arguments:
 
-  -h, --help            
+  -h, --help
 
                         show help message and exit
 
@@ -37,7 +37,9 @@ optional arguments:
                         starting chapter to download, you should set -e or
                         --end to use this option
                         
-  -e END, --end END     last chapter to download, you should set -s or --start
+  -e END, --end END
+
+                        last chapter to download, you should set -s or --start
                         to use this option
 
 ### getting help
