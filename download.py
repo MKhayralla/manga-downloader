@@ -65,10 +65,16 @@ def download_chapter(manga, chapter_number):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='attack on titan manga downloader')
-    parser.add_argument('manga', nargs='?', default='attack', choices=['attack', 'nanatsu'], help='manga name')
-    parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers', nargs='+')
+    parser.add_argument('manga', nargs='?', default='attack', choices=['attack', 'nanatsu'], help='manga name, defaulted to "attack"')
+    parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers to download, set if not using start and end', nargs='+')
+    parser.add_argument('-s', '--start', dest='start', help='starting chapter to download, you should set -e or --end to use this option')
+    parser.add_argument('-e', '--end', dest='end', help='last chapter to download, you should set -s or --start to use this option')
     args = parser.parse_args()
     manga = args.manga
-    chapters = args.chapters
+    if args.start is not None and args.end is not None:
+        chapters = [str(i) for i in range(int(args.start), int(args.end) + 1)]
+    else:
+        chapters = args.chapters
+
     for chapter in chapters:
         download_chapter(manga, chapter)
