@@ -22,8 +22,7 @@ from os import remove
 #manga url's
 from manga import create_link
 
-def generate_img_url(url):
-    return url[url.find('&url=')+5:] if url.find('&url=') > -1 else url
+from helpers import initiate_app, generate_img_url
 
 def save_img(url, chapter_number, page_number):
     file_name = chapter_number+ str(page_number)+ url[url.rfind('.'):]
@@ -51,14 +50,23 @@ def download_chapter(manga, chapter_number):
     print('page loaded')
     print('found {} images'.format(len(urls)))
     image_urls = list(map(lambda x: generate_img_url(x), urls))
-    image_urls_final = [u for u in image_urls if u[u.rfind('.'):] == '.png' or u[u.rfind('.'):] == '.jpg']
+    image_urls_final = [u for u in image_urls if u[u.rfind('.')+1:].lower() in ['png', 'jpg']]
     print('found {} image urls'.format(len(image_urls_final)))
     files = []
     for i, url in enumerate(image_urls_final):
-        files.append(save_img(url, chapter_number, i))
+        try:
+            files.append(save_img(url, chapter_number, i))
+        except:
+            continue
     print('creating {}.pdf'.format(chapter_number))
-    img_list = [Image.open(f).convert('RGB') for f in files]
-    img_list[0].save('{}.pdf'.format(chapter_number), save_all = True, append_images = img_list[1:])
+    img_list = []
+    for f in files:
+        try:
+            img_list.append(Image.open(f).convert('RGB'))
+        except:
+            continue
+    pdf_path = initiate_app()
+    img_list[0].save(r'{}/{}_{}.pdf'.format(pdf_path, manga, chapter_number), save_all = True, append_images = img_list[1:])
     print('deleting image files')
     for file in files:
         remove(file)
@@ -73,8 +81,11 @@ if __name__ == "__main__":
     manga = args.manga
     if args.start is not None and args.end is not None:
         chapters = [str(i) for i in range(int(args.start), int(args.end) + 1)]
-    else:
+    elif args.chapters is not None:
         chapters = args.chapters
+    else:
+        parser.print_help()
+        exit()
 
     for chapter in chapters:
         download_chapter(manga, chapter)
