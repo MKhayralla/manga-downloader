@@ -6,6 +6,7 @@ a script to download famous manga
 <ul>
 <li> attack on titan (SNK)</li>
 <li> 7 deadly sins (nanatsu no taizai)</li>
+<li> solo leveling (light novel)</li>
 </ul>
 
 ### how to start
@@ -14,11 +15,11 @@ use ` pip install -r requirements.txt ` in the terminal
 
 ### simple usage
 
-` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [{attack,nanatsu}] `
+` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [{attack,nanatsu,sln}] `
 
 positional arguments:
 
-  {attack,nanatsu}
+  {attack,nanatsu,sln}
 
                         manga name, defaulted to "attack"
 

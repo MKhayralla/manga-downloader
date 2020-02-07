@@ -1,9 +1,3 @@
-#from selenium import webdriver #run an automated web browser
-#from selenium.webdriver.chrome.options import Options #chrome options for selenium
-#browser options
-#chrome_options = Options()
-#chrome_options.add_argument('--headless')
-
 #download files
 from requests import get
 
@@ -21,8 +15,11 @@ from os import remove
 
 #manga url's
 from manga import create_link
-
+#helper functions
 from helpers import initiate_app, generate_img_url
+
+#solo leveling novel
+from sln import read_chapter as solo
 
 def save_img(url, chapter_number, page_number):
     file_name = chapter_number+ str(page_number)+ url[url.rfind('.'):]
@@ -35,6 +32,9 @@ def save_img(url, chapter_number, page_number):
     return file_name
 
 def download_chapter(manga, chapter_number):
+    if manga == 'sln':
+        solo(chapter_number)
+        return
     print('loading chapter {} page'.format(chapter_number))
     link = create_link(manga, chapter_number)
     print(link)
@@ -73,7 +73,7 @@ def download_chapter(manga, chapter_number):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='attack on titan manga downloader')
-    parser.add_argument('manga', nargs='?', default='attack', choices=['attack', 'nanatsu'], help='manga name, defaulted to "attack"')
+    parser.add_argument('manga', nargs='?', default='attack', choices=['attack', 'nanatsu', 'sln'], help='manga name, defaulted to "attack"')
     parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers to download, set if not using start and end', nargs='+')
     parser.add_argument('-s', '--start', dest='start', help='starting chapter to download, you should set -e or --end to use this option')
     parser.add_argument('-e', '--end', dest='end', help='last chapter to download, you should set -s or --start to use this option')
