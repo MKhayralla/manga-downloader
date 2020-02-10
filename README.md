@@ -7,6 +7,7 @@ a script to download famous manga
 <li> attack on titan (SNK)</li>
 <li> 7 deadly sins (nanatsu no taizai)</li>
 <li> solo leveling (light novel)</li>
+<li> one piece </li>
 </ul>
 
 ### how to start
