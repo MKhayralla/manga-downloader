@@ -15,11 +15,11 @@ use ` pip install -r requirements.txt ` in the terminal
 
 ### simple usage
 
-` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [{attack,nanatsu,sln}] `
+` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [{attack,nanatsu,sln,piece}] `
 
 positional arguments:
 
-  {attack,nanatsu,sln}
+  {attack,nanatsu,sln,piece}
 
                         manga name, defaulted to "attack"
 

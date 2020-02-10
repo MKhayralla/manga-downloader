@@ -73,8 +73,8 @@ def download_chapter(manga, chapter_number):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='attack on titan manga downloader')
-    parser.add_argument('manga', nargs='?', default='attack', choices=['attack', 'nanatsu', 'sln'], help='manga name, defaulted to "attack"')
-    parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers to download, set if not using start and end', nargs='+')
+    parser.add_argument('manga', nargs='?', default='attack', choices=['attack', 'nanatsu', 'sln', 'piece'], help='manga name, defaulted to "attack"')
+    parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers to download, set if not using start and end')
     parser.add_argument('-s', '--start', dest='start', help='starting chapter to download, you should set -e or --end to use this option')
     parser.add_argument('-e', '--end', dest='end', help='last chapter to download, you should set -s or --start to use this option')
     args = parser.parse_args()
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     if args.start is not None and args.end is not None:
         chapters = [str(i) for i in range(int(args.start), int(args.end) + 1)]
     elif args.chapters is not None:
-        chapters = args.chapters
+        chapters = args.chapters.split(' ')
     else:
         parser.print_help()
         exit()
