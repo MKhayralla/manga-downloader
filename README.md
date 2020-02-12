@@ -8,6 +8,7 @@ a script to download famous manga
 <li> 7 deadly sins (nanatsu no taizai)</li>
 <li> solo leveling (light novel)</li>
 <li> one piece </li>
+<li> hunterXhunter (hunter) </li>
 </ul>
 
 ### how to start
@@ -16,11 +17,11 @@ use ` pip install -r requirements.txt ` in the terminal
 
 ### simple usage
 
-` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [{attack,nanatsu,sln,piece}] `
+` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [{attack,nanatsu,......}] `
 
 positional arguments:
 
-  {attack,nanatsu,sln,piece}
+  {attack,nanatsu,sln,piece,hunter}
 
                         manga name, defaulted to "attack"
 

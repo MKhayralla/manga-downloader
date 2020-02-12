@@ -72,8 +72,8 @@ def download_chapter(manga, chapter_number):
         remove(file)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='attack on titan manga downloader')
-    parser.add_argument('manga', nargs='?', default='attack', choices=['attack', 'nanatsu', 'sln', 'piece'], help='manga name, defaulted to "attack"')
+    parser = argparse.ArgumentParser(description='popular manga downloader')
+    parser.add_argument('manga', nargs='?', default='attack', choices=['hunter', 'attack', 'nanatsu', 'sln', 'piece'], help='manga name, defaulted to "attack"')
     parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers to download, set if not using start and end')
     parser.add_argument('-s', '--start', dest='start', help='starting chapter to download, you should set -e or --end to use this option')
     parser.add_argument('-e', '--end', dest='end', help='last chapter to download, you should set -s or --start to use this option')
