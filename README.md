@@ -17,7 +17,7 @@ use ` pip install -r requirements.txt ` in the terminal
 
 ### simple usage
 
-` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [{attack,nanatsu,......}] `
+` $ python download.py [-h] [-c CHAPTERS [CHAPTERS ...]] [-s START] [-e END] [-m {red,green,blue,yellow}] [{attack,nanatsu,......}] `
 
 positional arguments:
 
@@ -44,6 +44,10 @@ optional arguments:
 
                         last chapter to download, you should set -s or --start
                         to use this option
+
+   -m {red,green,blue,yellow}, --mask {red,green,blue,yellow}
+                        color mask to cover the page with (for reducing eye
+                        strain)
 
 ### getting help
 
