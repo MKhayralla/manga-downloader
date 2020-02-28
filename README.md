@@ -46,6 +46,7 @@ optional arguments:
                         to use this option
 
    -m {red,green,blue,yellow}, --mask {red,green,blue,yellow}
+
                         color mask to cover the page with (for reducing eye
                         strain)
 
