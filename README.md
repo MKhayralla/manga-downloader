@@ -4,7 +4,7 @@ a script to download famous manga
 
 ### available manga
 <ul>
-<li> attack on titan (SNK)</li>
+<li> attack on titan (SNK) - available in colors -</li>
 <li> 7 deadly sins (nanatsu no taizai)</li>
 <li> solo leveling (light novel)</li>
 <li> one piece </li>
@@ -21,7 +21,7 @@ use ` pip install -r requirements.txt ` in the terminal
 
 positional arguments:
 
-  {attack,nanatsu,sln,piece,hunter}
+  {attack,nanatsu,sln,piece,hunter,attack-colored}
 
                         manga name, defaulted to "attack"
 
