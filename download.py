@@ -84,7 +84,7 @@ def download_chapter(manga, chapter_number, mask):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='popular manga downloader')
     parser.add_argument('manga', nargs='?', default='attack',
-    choices=['hunter', 'attack', 'nanatsu', 'sln', 'piece', 'attack-colored'],
+    choices=['hunter', 'attack', 'nanatsu', 'sln', 'piece', 'attack-colored', 'tgre'],
     help='manga name, defaulted to "attack"')
     parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers to download, set if not using start and end')
     parser.add_argument('-s', '--start', dest='start', help='starting chapter to download, you should set -e or --end to use this option')

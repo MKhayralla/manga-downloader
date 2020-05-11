@@ -9,6 +9,7 @@ a script to download famous manga
 <li> solo leveling (light novel)</li>
 <li> one piece </li>
 <li> hunterXhunter (hunter) </li>
+<li> Tokyo Ghoul: re </li>
 </ul>
 
 ### how to start
@@ -21,7 +22,7 @@ use ` pip install -r requirements.txt ` in the terminal
 
 positional arguments:
 
-  {attack,nanatsu,sln,piece,hunter,attack-colored}
+  {attack,nanatsu,sln,piece,hunter,attack-colored,tgre}
 
                         manga name, defaulted to "attack"
 
