@@ -8,6 +8,6 @@ manga_dict = {
     'jjk' : 'https://jujutsukaisen.online/manga/jujutsu-kaisen-manga-chapter'
 }
 def create_link(manga, chapter):
-    if manga == 'hunter':
+    if manga in ['hunter', 'jjk']:
         return '{}-{}'.format(manga_dict[manga], int(chapter))
     return '{}-{:03d}'.format(manga_dict[manga], int(chapter))
