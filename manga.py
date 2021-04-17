@@ -4,7 +4,8 @@ manga_dict = {
     'piece' : 'https://ww7.readonepiece.com/chapter/one-piece-chapter',
     'hunter' : 'https://ww2.readhxh.com/chapter/hunter-x-hunter-chapter',
     'attack-colored' : 'https://ww7.readsnk.com/chapter/shingeki-no-kyojin-colored-chapter',
-    'tgre' : 'https://tokyoghoulre-manga.com/manga/tokyo-ghoul-re-chapter'
+    'tgre' : 'https://tokyoghoulre-manga.com/manga/tokyo-ghoul-re-chapter',
+    'jjk' : 'https://jujutsukaisen.online/manga/jujutsu-kaisen-manga-chapter'
 }
 def create_link(manga, chapter):
     if manga == 'hunter':

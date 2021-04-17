@@ -1,5 +1,11 @@
 #download files
 from requests import get
+from selenium import webdriver #run an automated web browser
+from selenium.webdriver.chrome.options import Options #chrome options for selenium
+from selenium.webdriver.support.ui import WebDriverWait #waiting till the page loads
+from selenium.webdriver.support import expected_conditions as EC #expected loading condition
+#regular expressions
+import re
 
 #color mask
 from masks import color_mask
@@ -40,20 +46,29 @@ def download_chapter(manga, chapter_number, mask):
     print('loading chapter {} page'.format(chapter_number))
     link = create_link(manga, chapter_number)
     print(link)
-    # browser = webdriver.Chrome(options = chrome_options)
-    # browser.get(link)
-    # images = browser.find_elements_by_tag_name('img')
-    # urls = list(map(lambda x: x.get_attribute('src'), images))
-    # browser.close()
-    res = get(link)
-    soup = bs(res.content, 'html.parser')
-    images = soup.findAll('img')
-    urls = list(map(lambda x: x['src'], images))
+    #browser options
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-extensions')
+    browser = webdriver.Chrome('chromedriver', options = chrome_options) # change chromedriver path for your needs
+    browser.get(link)
+    try:
+        WebDriverWait(browser, 5).until(EC.title_contains('Shingeki No Kyojin'))
+    except :
+        pass
+    images = browser.find_elements_by_tag_name('img')
+    urls = list(map(lambda x: x.get_attribute('src'), images))
+    browser.close()
+    # res = get(link)
+    # soup = bs(res.content, 'html.parser')
+    # images = soup.findAll('img')
+    # urls = list(map(lambda x: x['src'], images))
     print('page loaded')
     print('found {} images'.format(len(urls)))
     image_urls = list(map(lambda x: generate_img_url(x), urls))
-    image_urls_final = [u for u in image_urls if u[u.rfind('.')+1:].lower() in ['png', 'jpg']]
+    image_urls_final = [u for u in image_urls if re.match(r'.*\.(jpg|png|jpeg)$', u.strip().lower())]
     print('found {} image urls'.format(len(image_urls_final)))
+    print(*[u for u in image_urls_final], sep = '\n')
     files = []
     for i, url in enumerate(image_urls_final):
         try:
@@ -84,7 +99,7 @@ def download_chapter(manga, chapter_number, mask):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='popular manga downloader')
     parser.add_argument('manga', nargs='?', default='attack',
-    choices=['hunter', 'attack', 'nanatsu', 'sln', 'piece', 'attack-colored', 'tgre'],
+    choices=['hunter', 'attack', 'nanatsu', 'sln', 'piece', 'attack-colored', 'tgre', 'jjk'],
     help='manga name, defaulted to "attack"')
     parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers to download, set if not using start and end')
     parser.add_argument('-s', '--start', dest='start', help='starting chapter to download, you should set -e or --end to use this option')

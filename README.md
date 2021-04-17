@@ -10,6 +10,7 @@ a script to download famous manga
 <li> one piece </li>
 <li> hunterXhunter (hunter) </li>
 <li> Tokyo Ghoul: re </li>
+<li> Jujutsu Kaisen </li>
 </ul>
 
 ### how to start
@@ -22,7 +23,7 @@ use ` pip install -r requirements.txt ` in the terminal
 
 positional arguments:
 
-  {attack,nanatsu,sln,piece,hunter,attack-colored,tgre}
+  {attack,nanatsu,sln,piece,hunter,attack-colored,tgre,jjk}
 
                         manga name, defaulted to "attack"
 
