@@ -2,8 +2,7 @@
 from requests import get
 from selenium import webdriver #run an automated web browser
 from selenium.webdriver.chrome.options import Options #chrome options for selenium
-from selenium.webdriver.support.ui import WebDriverWait #waiting till the page loads
-from selenium.webdriver.support import expected_conditions as EC #expected loading condition
+from selenium.webdriver.common.action_chains import ActionChains #scroll actions for lazy loading
 #regular expressions
 import re
 
@@ -25,6 +24,7 @@ from os import remove
 from manga import create_link
 #helper functions
 from helpers import initiate_app, generate_img_url
+from time import sleep
 
 #solo leveling novel
 from sln import read_chapter as solo
@@ -52,12 +52,25 @@ def download_chapter(manga, chapter_number, mask):
     chrome_options.add_argument('--disable-extensions')
     browser = webdriver.Chrome('chromedriver', options = chrome_options) # change chromedriver path for your needs
     browser.get(link)
-    try:
-        WebDriverWait(browser, 5).until(EC.title_contains('Shingeki No Kyojin'))
-    except :
-        pass
     images = browser.find_elements_by_tag_name('img')
-    urls = list(map(lambda x: x.get_attribute('src'), images))
+    if manga == 'jjk':
+        actions = ActionChains(browser)
+        for image in images:
+            try:
+                actions.move_to_element(image).perform()
+            except :
+                break
+            print('sleeping for a second to scroll down the page for lazy-loading handling')
+            print(image.get_attribute('src'))
+            sleep(1)
+    urls = list(map(
+        lambda x: x.get_attribute('src')
+        if(x.get_attribute('src') is not None)
+        else ('https:{}'.format(x.get_attribute('data-src').strip()) if(x.get_attribute('src') is not None)
+        else 'url'),
+        images)
+        )
+    print(*[u for u in urls], sep = '\n')
     browser.close()
     # res = get(link)
     # soup = bs(res.content, 'html.parser')
@@ -68,7 +81,6 @@ def download_chapter(manga, chapter_number, mask):
     image_urls = list(map(lambda x: generate_img_url(x), urls))
     image_urls_final = [u for u in image_urls if re.match(r'.*\.(jpg|png|jpeg)$', u.strip().lower())]
     print('found {} image urls'.format(len(image_urls_final)))
-    print(*[u for u in image_urls_final], sep = '\n')
     files = []
     for i, url in enumerate(image_urls_final):
         try:

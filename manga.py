@@ -5,7 +5,7 @@ manga_dict = {
     'hunter' : 'https://ww2.readhxh.com/chapter/hunter-x-hunter-chapter',
     'attack-colored' : 'https://ww7.readsnk.com/chapter/shingeki-no-kyojin-colored-chapter',
     'tgre' : 'https://tokyoghoulre-manga.com/manga/tokyo-ghoul-re-chapter',
-    'jjk' : 'https://jujutsukaisen.online/manga/jujutsu-kaisen-manga-chapter'
+    'jjk' : 'https://www.read-jujutsu-kaisen.com/manga/jujutsu-kaisen-chapter'
 }
 def create_link(manga, chapter):
     if manga in ['hunter', 'jjk']:
