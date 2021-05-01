@@ -12,6 +12,7 @@ a script to download famous manga
 <li> Tokyo Ghoul: re </li>
 <li> Jujutsu Kaisen </li>
 <li> demon slayer </li>
+<li> demon slayer colored version "starting from chapter 140 only" </li>
 </ul>
 
 ### how to start
@@ -24,7 +25,7 @@ use ` pip install -r requirements.txt ` in the terminal
 
 positional arguments:
 
-  {attack,nanatsu,sln,piece,hunter,attack-colored,tgre,jjk,demon}
+  {attack,nanatsu,sln,piece,hunter,attack-colored,tgre,jjk,demon,demon-colored}
 
                         manga name, defaulted to "attack"
 

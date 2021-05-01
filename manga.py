@@ -6,7 +6,8 @@ manga_dict = {
     'attack-colored' : 'https://ww7.readsnk.com/chapter/shingeki-no-kyojin-colored-chapter',
     'tgre' : 'https://manganelo.com/chapter/read_tokyo_ghoulre/chapter',
     'jjk' : 'https://www.read-jujutsu-kaisen.com/manga/jujutsu-kaisen-chapter',
-    'demon' : 'https://demonslayer-mangaonline.com/manga/demon-slayer-kimetsu-no-yaiba-chapter'
+    'demon' : 'https://demonslayer-mangaonline.com/manga/demon-slayer-kimetsu-no-yaiba-chapter',
+    'demon-colored' : 'https://ww5.demonslayermanga.com/chapter/kimetsu-no-yaiba-digital-colored-comics-chapter'
 }
 def create_link(manga, chapter):
     if manga in ['hunter', 'jjk', 'demon']:
