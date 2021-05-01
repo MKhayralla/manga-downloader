@@ -11,6 +11,7 @@ a script to download famous manga
 <li> hunterXhunter (hunter) </li>
 <li> Tokyo Ghoul: re </li>
 <li> Jujutsu Kaisen </li>
+<li> demon slayer </li>
 </ul>
 
 ### how to start
@@ -23,7 +24,7 @@ use ` pip install -r requirements.txt ` in the terminal
 
 positional arguments:
 
-  {attack,nanatsu,sln,piece,hunter,attack-colored,tgre,jjk}
+  {attack,nanatsu,sln,piece,hunter,attack-colored,tgre,jjk,demon}
 
                         manga name, defaulted to "attack"
 

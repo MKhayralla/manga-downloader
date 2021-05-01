@@ -29,6 +29,18 @@ from time import sleep
 #solo leveling novel
 from sln import read_chapter as solo
 
+#scroll to all images in the page to load them
+def lazy_handle(images, driver):
+    actions = ActionChains(driver)
+    for image in images:
+        try:
+            actions.move_to_element(image).perform()
+        except :
+            break
+        print('sleeping for a second to scroll down the page for lazy-loading handling')
+        print(image.get_attribute('src'))
+        sleep(1)
+
 def save_img(url, chapter_number, page_number):
     file_name = chapter_number+ str(page_number)+ url[url.rfind('.'):]
     print('downloading {} from {}'.format(file_name, url))
@@ -54,15 +66,7 @@ def download_chapter(manga, chapter_number, mask):
     browser.get(link)
     images = browser.find_elements_by_tag_name('img')
     if manga == 'jjk':
-        actions = ActionChains(browser)
-        for image in images:
-            try:
-                actions.move_to_element(image).perform()
-            except :
-                break
-            print('sleeping for a second to scroll down the page for lazy-loading handling')
-            print(image.get_attribute('src'))
-            sleep(1)
+        lazy_handle(images, browser)
     urls = list(map(
         lambda x: x.get_attribute('src')
         if(x.get_attribute('src') is not None)
@@ -111,7 +115,7 @@ def download_chapter(manga, chapter_number, mask):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='popular manga downloader')
     parser.add_argument('manga', nargs='?', default='attack',
-    choices=['hunter', 'attack', 'nanatsu', 'sln', 'piece', 'attack-colored', 'tgre', 'jjk'],
+    choices=['hunter', 'attack', 'nanatsu', 'sln', 'piece', 'attack-colored', 'tgre', 'jjk', 'demon'],
     help='manga name, defaulted to "attack"')
     parser.add_argument('-c', '--chapters',dest='chapters', help='chapters numbers to download, set if not using start and end')
     parser.add_argument('-s', '--start', dest='start', help='starting chapter to download, you should set -e or --end to use this option')
