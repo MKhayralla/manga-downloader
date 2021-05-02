@@ -3,6 +3,7 @@ from requests import get
 from selenium import webdriver #run an automated web browser
 from selenium.webdriver.chrome.options import Options #chrome options for selenium
 from selenium.webdriver.common.action_chains import ActionChains #scroll actions for lazy loading
+from selenium.common.exceptions import TimeoutException
 #regular expressions
 import re
 
@@ -50,6 +51,13 @@ def save_img(url, chapter_number, page_number):
             target.write(chunk)
         target.close()
     return file_name
+#handle blocking scripts
+def selenium_get(link, driver):
+    try:
+        driver.get(link)
+    except  TimeoutException :
+        driver.execute_script('window.stop() ;')
+
 
 def download_chapter(manga, chapter_number, mask):
     if manga == 'sln':
@@ -63,7 +71,8 @@ def download_chapter(manga, chapter_number, mask):
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-extensions')
     browser = webdriver.Chrome('chromedriver', options = chrome_options) # change chromedriver path for your needs
-    browser.get(link)
+    browser.set_page_load_timeout(10)
+    selenium_get(link, browser)
     images = browser.find_elements_by_tag_name('img')
     if manga == 'jjk':
         lazy_handle(images, browser)
